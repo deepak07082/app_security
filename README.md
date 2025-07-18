@@ -94,8 +94,8 @@ bool isCloned = await AppSecurityApi().isClonedApp();
 
 
 ## 🛠️ Customization
-    - Configure allowed installers: Play Store, App Store, TestFlight.
-    - Extend detection for enterprise distribution or sideloaded apps.
+- Configure allowed installers: Play Store, App Store, TestFlight.
+- Extend detection for enterprise distribution or sideloaded apps.
 
 ## 📄 License
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/deepak07082/app_security/blob/main/LICENSE) file for details.
