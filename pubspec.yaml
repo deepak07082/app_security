@@ -1,0 +1,36 @@
+name: app_security
+description: "App Security SDK"
+version: 1.0.1
+homepage: https://github.com/deepak07082/app_security.git
+repository: https://github.com/deepak07082/app_security.git
+issue_tracker: https://github.com/deepak07082/app_security/issues
+
+topics:
+  - app
+  - security
+  - hacking
+  - jailbroken
+  - detection
+
+environment:
+  sdk: ^3.8.1
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  pigeon: ^25.3.2
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.app_security
+        pluginClass: AppSecurityPlugin
+      ios:
+        pluginClass: AppSecurityPlugin
