@@ -12,29 +12,29 @@ App Security SDK is a Flutter plugin that helps you secure your application by d
 
 ## ✨ Features
 
-    - ✅ Root/Jailbreak Detection
-        Detect if the device is rooted (Android) or jailbroken (iOS).
+- ✅ Root/Jailbreak Detection
+    Detect if the device is rooted (Android) or jailbroken (iOS).
 
-    - ✅ VPN Detection
-        Identify active VPN connections for network safety.
+- ✅ VPN Detection
+    Identify active VPN connections for network safety.
 
-    - ✅ Real Device Check
-        Ensure the app runs on a real device and not on an emulator/simulator.
+- ✅ Real Device Check
+    Ensure the app runs on a real device and not on an emulator/simulator.
 
-    - ✅ Developer Mode & Debugging Check
-        Detect whether the device is in developer mode or being debugged.
+- ✅ Developer Mode & Debugging Check
+    Detect whether the device is in developer mode or being debugged.
 
-    - ✅ Piracy Detection
-        Validate app integrity and detect pirate apps using Kevlar.
+- ✅ Piracy Detection
+    Validate app integrity and detect pirate apps using Kevlar.
 
-    - ✅ Install Source Verification
-        Ensure the app was installed from trusted sources like Play Store, App Store, or TestFlight.
+- ✅ Install Source Verification
+    Ensure the app was installed from trusted sources like Play Store, App Store, or TestFlight.
 
-    - ✅ Clone Detection
-        Detect cloned or dual apps using sandbox validation.
+- ✅ Clone Detection
+    Detect cloned or dual apps using sandbox validation.
 
-    - ✅ Device Identifier Access
-        Fetch Device ID (Android ID) and Identifier for Vendor (iOS).
+- ✅ Device Identifier Access
+    Fetch Device ID (Android ID) and Identifier for Vendor (iOS).
 
 ## 📦 Installation
 Add the package to your `pubspec.yaml`:
@@ -89,8 +89,8 @@ bool isCloned = await AppSecurityApi().isClonedApp();
 ```
 
 ## 🛡 Supported Platforms
-    - ✅ Android: Uses Kevlar for root and piracy detection.
-    - ✅ iOS: Implements native checks for jailbreak, VPN, and integrity.
+- ✅ Android: Uses Kevlar for root and piracy detection.
+- ✅ iOS: Implements native checks for jailbreak, VPN, and integrity.
 
 
 ## 🛠️ Customization
