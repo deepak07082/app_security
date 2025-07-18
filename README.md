@@ -10,6 +10,13 @@ App Security SDK is a Flutter plugin that helps you secure your application by d
 
 ![gif](./example/images/screen-shot.jpg)
 
+## ✅ Android Permissions
+If you want to access IMEI (available only on Android versions below 10), you need to add the following permission in your AndroidManifest.xml:
+```xml
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+```
+⚠️ On Android 10 (API 29) and above, IMEI access is restricted for privacy reasons, so this feature will return null on newer devices.
+
 ## ✨ Features
 
 - ✅ Root/Jailbreak Detection
