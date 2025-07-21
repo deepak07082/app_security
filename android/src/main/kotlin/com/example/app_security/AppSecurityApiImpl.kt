@@ -3,6 +3,7 @@ package com.example.app_security
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -16,6 +17,7 @@ import com.kevlar.antipiracy.KevlarAntipiracy
 import com.kevlar.antipiracy.dsl.attestation.AntipiracyAttestation
 import com.kevlar.rooting.KevlarRooting
 import kotlinx.coroutines.runBlocking
+
 
 class AppSecurityApiImpl(private val context: Context) : AppSecurityApi {
 
@@ -115,9 +117,6 @@ class AppSecurityApiImpl(private val context: Context) : AppSecurityApi {
     }
 
     override fun installedFromValidSource(sourceList: List<String>): Boolean = runBlocking {
-      val res=  isPiracyDetectedFull(context);
-        println("installedFromValidSource");
-        println(res);
         val installer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             context.packageManager.getInstallSourceInfo(context.packageName).installingPackageName
         } else {
@@ -134,4 +133,15 @@ class AppSecurityApiImpl(private val context: Context) : AppSecurityApi {
         return matchCount != 1
     }
 
+    override fun openDeveloperSettings(): Boolean {
+        return try {
+            val intent = Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
 }

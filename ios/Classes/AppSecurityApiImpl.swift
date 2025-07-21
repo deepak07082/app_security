@@ -50,6 +50,10 @@ public class AppSecurityApiImpl: NSObject, AppSecurityApi {
     public func isClonedApp() throws -> Bool {
         return detectClone()
     }
+
+    public func openDeveloperSettings() throws -> Bool {
+        return false
+    }
 }
 
 private extension AppSecurityApiImpl {

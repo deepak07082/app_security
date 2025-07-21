@@ -13,4 +13,5 @@ abstract class AppSecurityApi {
   List<String>? isSafeEnvironment();
   bool installedFromValidSource(List<String> sourceList);
   bool isClonedApp();
+  bool openDeveloperSettings();
 }

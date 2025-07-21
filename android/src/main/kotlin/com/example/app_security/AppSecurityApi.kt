@@ -69,6 +69,7 @@ interface AppSecurityApi {
   fun isSafeEnvironment(): List<String>?
   fun installedFromValidSource(sourceList: List<String>): Boolean
   fun isClonedApp(): Boolean
+  fun openDeveloperSettings(): Boolean
 
   companion object {
     /** The codec used by AppSecurityApi. */
@@ -237,6 +238,21 @@ interface AppSecurityApi {
           channel.setMessageHandler { _, reply ->
             val wrapped: List<Any?> = try {
               listOf(api.isClonedApp())
+            } catch (exception: Throwable) {
+              AppSecurityApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.app_security.AppSecurityApi.openDeveloperSettings$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { _, reply ->
+            val wrapped: List<Any?> = try {
+              listOf(api.openDeveloperSettings())
             } catch (exception: Throwable) {
               AppSecurityApiPigeonUtils.wrapError(exception)
             }

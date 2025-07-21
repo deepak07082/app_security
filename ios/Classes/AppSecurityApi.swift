@@ -98,6 +98,7 @@ protocol AppSecurityApi {
   func isSafeEnvironment() throws -> [String]?
   func installedFromValidSource(sourceList: [String]) throws -> Bool
   func isClonedApp() throws -> Bool
+  func openDeveloperSettings() throws -> Bool
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
@@ -250,6 +251,19 @@ class AppSecurityApiSetup {
       }
     } else {
       isClonedAppChannel.setMessageHandler(nil)
+    }
+    let openDeveloperSettingsChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.app_security.AppSecurityApi.openDeveloperSettings\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      openDeveloperSettingsChannel.setMessageHandler { _, reply in
+        do {
+          let result = try api.openDeveloperSettings()
+          reply(wrapResult(result))
+        } catch {
+          reply(wrapError(error))
+        }
+      }
+    } else {
+      openDeveloperSettingsChannel.setMessageHandler(nil)
     }
   }
 }

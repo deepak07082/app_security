@@ -57,4 +57,9 @@ class AppSecurity {
     final result = await _api.isClonedApp();
     return result;
   }
+
+  static Future<bool> openDeveloperSettings() async {
+    final result = await _api.openDeveloperSettings();
+    return result;
+  }
 }
