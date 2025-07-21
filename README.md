@@ -90,6 +90,11 @@ String? source = await AppSecurityApi().installSource();
 print(source); // e.g., "playstore", "appstore", "testflight"
 ```
 
+### 🛠 Open developer Options
+```dart
+String? source = await AppSecurityApi().openDeveloperSettings();
+```
+
 ### 🔍 Detect Cloned App
 ```dart
 bool isCloned = await AppSecurityApi().isClonedApp();
