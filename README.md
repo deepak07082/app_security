@@ -100,18 +100,17 @@ String? source = await AppSecurity.openDeveloperSettings();
 bool isCloned = await AppSecurity.isClonedApp();
 ```
 
-Import the package for add flags:
-```dart
-import 'package:app_security/window_flags.dart';
-```
-
 ### 🛠 Add a Window Flag
 ```dart
+import 'package:app_security/window_flags.dart';
+
 bool isCloned = await AppSecurity.addFlags(WindowFlags.FLAG_SECURE);
 ```
 
 ### 🛠 Clear a Window Flag
 ```dart
+import 'package:app_security/window_flags.dart';
+
 bool isCloned = await AppSecurity.clearFlags(WindowFlags.FLAG_SECURE);
 ```
 

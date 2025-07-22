@@ -14,3 +14,8 @@
 
 * addFlag added
 * removeFlag added
+
+## 1.0.5
+
+* Example updated
+* minor bug fixed
