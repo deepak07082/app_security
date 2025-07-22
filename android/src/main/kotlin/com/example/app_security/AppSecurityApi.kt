@@ -70,6 +70,8 @@ interface AppSecurityApi {
   fun installedFromValidSource(sourceList: List<String>): Boolean
   fun isClonedApp(): Boolean
   fun openDeveloperSettings(): Boolean
+  fun addFlags(flags: Long): Boolean
+  fun clearFlags(flags: Long): Boolean
 
   companion object {
     /** The codec used by AppSecurityApi. */
@@ -253,6 +255,40 @@ interface AppSecurityApi {
           channel.setMessageHandler { _, reply ->
             val wrapped: List<Any?> = try {
               listOf(api.openDeveloperSettings())
+            } catch (exception: Throwable) {
+              AppSecurityApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.app_security.AppSecurityApi.addFlags$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val flagsArg = args[0] as Long
+            val wrapped: List<Any?> = try {
+              listOf(api.addFlags(flagsArg))
+            } catch (exception: Throwable) {
+              AppSecurityApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.app_security.AppSecurityApi.clearFlags$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val flagsArg = args[0] as Long
+            val wrapped: List<Any?> = try {
+              listOf(api.clearFlags(flagsArg))
             } catch (exception: Throwable) {
               AppSecurityApiPigeonUtils.wrapError(exception)
             }

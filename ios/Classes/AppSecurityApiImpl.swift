@@ -54,6 +54,14 @@ public class AppSecurityApiImpl: NSObject, AppSecurityApi {
     public func openDeveloperSettings() throws -> Bool {
         return false
     }
+
+    public func addFlags(flag: Int) throws -> Bool {
+        return false
+    }
+
+    public func clearFlags(flag: Int) throws -> Bool {
+        return false
+    }
 }
 
 private extension AppSecurityApiImpl {

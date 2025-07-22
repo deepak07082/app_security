@@ -99,6 +99,8 @@ protocol AppSecurityApi {
   func installedFromValidSource(sourceList: [String]) throws -> Bool
   func isClonedApp() throws -> Bool
   func openDeveloperSettings() throws -> Bool
+  func addFlags(flags: Int64) throws -> Bool
+  func clearFlags(flags: Int64) throws -> Bool
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
@@ -264,6 +266,36 @@ class AppSecurityApiSetup {
       }
     } else {
       openDeveloperSettingsChannel.setMessageHandler(nil)
+    }
+    let addFlagsChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.app_security.AppSecurityApi.addFlags\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      addFlagsChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let flagsArg = args[0] as! Int64
+        do {
+          let result = try api.addFlags(flags: flagsArg)
+          reply(wrapResult(result))
+        } catch {
+          reply(wrapError(error))
+        }
+      }
+    } else {
+      addFlagsChannel.setMessageHandler(nil)
+    }
+    let clearFlagsChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.app_security.AppSecurityApi.clearFlags\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      clearFlagsChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let flagsArg = args[0] as! Int64
+        do {
+          let result = try api.clearFlags(flags: flagsArg)
+          reply(wrapResult(result))
+        } catch {
+          reply(wrapError(error))
+        }
+      }
+    } else {
+      clearFlagsChannel.setMessageHandler(nil)
     }
   }
 }

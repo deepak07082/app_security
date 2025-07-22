@@ -14,4 +14,6 @@ abstract class AppSecurityApi {
   bool installedFromValidSource(List<String> sourceList);
   bool isClonedApp();
   bool openDeveloperSettings();
+  bool addFlags(int flags);
+  bool clearFlags(int flags);
 }

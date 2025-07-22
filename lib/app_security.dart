@@ -62,4 +62,14 @@ class AppSecurity {
     final result = await _api.openDeveloperSettings();
     return result;
   }
+
+  static Future<bool> addFlags(int flag) async {
+    final result = await _api.addFlags(flag);
+    return result;
+  }
+
+  static Future<bool> clearFlags(int flag) async {
+    final result = await _api.clearFlags(flag);
+    return result;
+  }
 }
