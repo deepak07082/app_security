@@ -9,3 +9,8 @@
 ## 1.0.3
 
 * Developer settings page open added.
+
+## 1.0.4
+
+* addFlag added
+* removeFlag added

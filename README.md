@@ -65,39 +65,54 @@ import 'package:app_security/app_security.dart';
 
 ### ✅ Root/Jailbreak Detection
 ```dart
-bool isRooted = await AppSecurityApi().isUseJailBrokenOrRoot();
+bool isRooted = await AppSecurity.isUseJailBrokenOrRoot();
 ```
 
 ### 🔒 Check VPN Usage
 ```dart
-bool vpnActive = await AppSecurityApi().isDeviceUseVPN();
+bool vpnActive = await AppSecurity.isDeviceUseVPN();
 ```
 
 ### 🛡️ Validate App Environment
 ```dart
-List<String>? issues = await AppSecurityApi().isSafeEnvironment();
+List<String>? issues = await AppSecurity.isSafeEnvironment();
 print(issues); // e.g., ["JAILBREAK", "VPN_ACTIVE"]
 ```
 
 ### 📲 Get Device ID
 ```dart
-String? deviceId = await AppSecurityApi().getDeviceId();
+String? deviceId = await AppSecurity.getDeviceId();
 ```
 
 ### 🛠 Check Install Source
 ```dart
-String? source = await AppSecurityApi().installSource();
+String? source = await AppSecurity.installSource();
 print(source); // e.g., "playstore", "appstore", "testflight"
 ```
 
 ### 🛠 Open developer Options
 ```dart
-String? source = await AppSecurityApi().openDeveloperSettings();
+String? source = await AppSecurity.openDeveloperSettings();
 ```
 
 ### 🔍 Detect Cloned App
 ```dart
-bool isCloned = await AppSecurityApi().isClonedApp();
+bool isCloned = await AppSecurity.isClonedApp();
+```
+
+Import the package for add flags:
+```dart
+import 'package:app_security/window_flags.dart';
+```
+
+### 🛠 Add a Window Flag
+```dart
+bool isCloned = await AppSecurity.addFlags(WindowFlags.FLAG_SECURE);
+```
+
+### 🛠 Clear a Window Flag
+```dart
+bool isCloned = await AppSecurity.clearFlags(WindowFlags.FLAG_SECURE);
 ```
 
 ## 🛡 Supported Platforms
