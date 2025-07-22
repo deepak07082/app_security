@@ -1,4 +1,5 @@
 import 'package:app_security/app_security.dart';
+import 'package:app_security/window_flags.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -68,32 +69,99 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               SizedBox(height: 40),
-              Expanded(
-                child: ListView.separated(
-                  itemCount: keys.length,
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 10);
-                  },
-                  itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            keys[index],
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Text(
-                          ':',
+              ListView.separated(
+                itemCount: keys.length,
+                shrinkWrap: true,
+                separatorBuilder: (context, index) {
+                  return SizedBox(height: 10);
+                },
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          keys[index],
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(width: 10),
-                        Expanded(child: Text(results[keys[index]].toString())),
-                      ],
-                    );
-                  },
-                ),
+                      ),
+                      Text(':', style: TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(width: 10),
+                      Expanded(child: Text(results[keys[index]].toString())),
+                    ],
+                  );
+                },
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Open developer settings',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Text(':', style: TextStyle(fontWeight: FontWeight.bold)),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(Colors.grey),
+                      ),
+                      onPressed: () {
+                        AppSecurity.openDeveloperSettings();
+                      },
+                      child: Text('Open'),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Set Flag(Secure)',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Text(':', style: TextStyle(fontWeight: FontWeight.bold)),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(Colors.grey),
+                      ),
+                      onPressed: () {
+                        AppSecurity.addFlags(WindowFlags.flagSecure);
+                      },
+                      child: Text('Set'),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Clear Flag(Secure)',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Text(':', style: TextStyle(fontWeight: FontWeight.bold)),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(Colors.grey),
+                      ),
+                      onPressed: () {
+                        AppSecurity.clearFlags(WindowFlags.flagSecure);
+                      },
+                      child: Text('Clear'),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

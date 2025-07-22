@@ -23,13 +23,8 @@ import kotlinx.coroutines.runBlocking
 
 class AppSecurityApiImpl(
     private val context: Context,
-    private var activity: Activity? = null
+    var activity: Activity? = null
     ) : AppSecurityApi {
-
-
-    fun setActivity(activity: Activity?) {
-        this.activity = activity
-    }
 
     override fun isUseJailBrokenOrRoot(): Boolean = runBlocking {
         val rooting = KevlarRooting {}
@@ -136,9 +131,14 @@ class AppSecurityApiImpl(
 
     @SuppressLint("SdCardPath")
     override fun isClonedApp(): Boolean {
-        val filesDirPath = context.filesDir.absolutePath 
+        return try {
+        val filesDirPath = context.filesDir.absolutePath
         val matchCount = Regex("/data/user/0").findAll(filesDirPath).count()
         return matchCount != 1
+    } catch (e: Exception) {
+        e.printStackTrace()
+        false
+    }
     }
 
     override fun openDeveloperSettings(): Boolean {
@@ -154,6 +154,7 @@ class AppSecurityApiImpl(
     }
 
     override fun addFlags(flags: Long): Boolean {
+        return try {
         val currentActivity = activity ?: return false
         val flag = flags.toInt()
         if (!validLayoutParam(flag)) return false
@@ -161,9 +162,14 @@ class AppSecurityApiImpl(
             currentActivity.window.addFlags(flag)
         }
         return true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
     }
 
     override fun clearFlags(flags: Long): Boolean {
+        return try {
         val currentActivity = activity ?: return false
         val flag = flags.toInt()
         if (!validLayoutParam(flag)) return false
@@ -171,6 +177,10 @@ class AppSecurityApiImpl(
             currentActivity.window.clearFlags(flag)
         }
         return true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
     }
 
     private fun validLayoutParam(flag: Int): Boolean {
