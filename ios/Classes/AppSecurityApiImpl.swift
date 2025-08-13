@@ -6,6 +6,26 @@ public class AppSecurityApiImpl: NSObject, AppSecurityApi {
     private let bundle = Bundle.main
     private let fm = FileManager.default
 
+    public func addFlags(flags: Int64) throws -> Bool {
+        DispatchQueue.main.async {
+            if flags == 2 {
+                StatusBarManager.shared.isHidden = true
+                UIApplication.shared.windows.first?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
+            }
+        }
+        return true
+    }
+
+    public func clearFlags(flags: Int64) throws -> Bool {
+        DispatchQueue.main.async {
+            if flags == 2 {
+                StatusBarManager.shared.isHidden = false
+                UIApplication.shared.windows.first?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
+            }
+        }
+        return true
+    }
+    
     public func isUseJailBrokenOrRoot() throws -> Bool {
         return detectJailbreak()
     }
@@ -174,4 +194,15 @@ private extension AppSecurityApiImpl {
         guard let url = URL(string: scheme) else { return false }
         return UIApplication.shared.canOpenURL(url)
     }
+}
+
+class PluginViewController: UIViewController {
+    override var prefersStatusBarHidden: Bool {
+        return StatusBarManager.shared.isHidden
+    }
+}
+
+class StatusBarManager {
+    static let shared = StatusBarManager()
+    var isHidden = false
 }
