@@ -19,3 +19,7 @@
 
 * Example updated
 * minor bug fixed
+
+## 1.0.6
+
+* IOS issue fix
