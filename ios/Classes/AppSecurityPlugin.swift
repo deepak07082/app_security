@@ -6,6 +6,7 @@ public class AppSecurityPlugin: NSObject, FlutterPlugin {
     let channel = FlutterMethodChannel(name: "app_security", binaryMessenger: registrar.messenger())
     let instance = AppSecurityPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
+    AppSecurityApiSetup.setUp(binaryMessenger: registrar.messenger(), api: AppSecurityApiImpl())
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
