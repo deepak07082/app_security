@@ -23,3 +23,7 @@
 ## 1.0.6
 
 * IOS issue fix
+
+## 1.0.7
+
+* IOS No implementation issue fix
