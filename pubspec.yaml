@@ -1,6 +1,6 @@
 name: app_security
 description: "App Security SDK"
-version: 1.0.7
+version: 1.0.8
 homepage: https://github.com/deepak07082/app_security.git
 repository: https://github.com/deepak07082/app_security.git
 issue_tracker: https://github.com/deepak07082/app_security/issues
@@ -14,7 +14,7 @@ topics:
 
 environment:
   sdk: ^3.8.1
-  flutter: '>=3.3.0'
+  flutter: ">=3.38.0"
 
 dependencies:
   flutter:
@@ -23,8 +23,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
-  pigeon: ^26.0.0
+  flutter_lints: ^6.0.0
+  pigeon: ^27.1.0
 
 flutter:
   plugin:
